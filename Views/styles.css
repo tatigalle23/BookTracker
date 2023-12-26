@@ -1,0 +1,89 @@
+body {
+    background-color: #5271FF;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    
+}
+
+#addBookButton {
+    width: 200px;
+    height: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 20px rgba(1, 1, 1, 0.1);
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#addBookButton i {
+    font-size: 100px; /* Tamaño del ícono ajustado */
+    margin-bottom: 10px; /* Espaciado entre el ícono y el texto (ajustable) */
+    color:#5271FF;
+
+}
+
+/* Estilos para el formulario */
+.addForm {
+    position: fixed;
+    top: 50%; /* Centrar verticalmente */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translate(-50%, -50%); /* Ajustar al centro exacto */
+    width: 200px;
+    height: 300px;
+    margin-top: 20px;
+}
+/* Clase para ocultar el formulario por defecto */
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 50%; /* Centrar verticalmente */
+    left: 50%; /* Centrar horizontalmente */
+    transform: translate(-50%, -50%); /* Ajustar al centro exacto */
+    width: 200px;
+    height: 300px;
+    box-shadow: 0 0 20px rgba(1, 1, 1, 0.3);
+    background-color: aliceblue;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Full-width input fields */
+.addForm input[type=text] {
+    width: 70%;
+    padding: 10px;
+    margin:  10px;
+    border: none;
+    background: #5271FF;
+  }
+  
+  /* When the inputs get focus, do something */
+  .addForm input[type=text]:focus{
+    background-color: #4057bd;
+    outline: none;
+  }
+  
+  /* Set a style for the submit/login button */
+  .addForm .btn {
+    background-color: #5271FF;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 70%;
+    margin-bottom:10px;
+    margin-top: 20px;
+    opacity: 0.8;
+  }
+
+  .form-container .btn:hover{
+    opacity: 2;
+  }
+
+  

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>My Booktracker</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://kit.fontawesome.com/12817e8d78.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>My booktracker</h1>
+
+    <!-- Botón para agregar más libros -->
+    <button id="addBookButton" onclick="openForm()">
+        <i class="fa-solid fa-circle-plus"></i>
+    </button>
+    <!-- Formulario oculto -->
+    <div id="addBookForm" class="form-popup">
+        <form class="addForm">
+            <label for="bookName">Name:</label>
+            <input type="text" id="bookName" name="bookName" required>
+
+            <label for="bookImage">Image:</label>
+            <input type="text" id="bookImage" name="bookImage" required>
+
+            <button type="button" class="btn" onclick="closeForm()">Add</button>
+        </form>
+    </div>
+    <!-- Vincular el archivo JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>

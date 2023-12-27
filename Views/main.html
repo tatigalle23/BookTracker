@@ -18,14 +18,14 @@
     </button>
     <!-- Formulario oculto -->
     <div id="addBookForm" class="form-popup">
-        <form class="addForm">
+        <form class="addForm" action="/save" method="post" enctype="multipart/form-data">
             <label for="bookName">Name:</label>
             <input type="text" id="bookName" name="bookName" required>
 
             <label for="bookImage">Image:</label>
-            <input type="text" id="bookImage" name="bookImage" required>
+            <input type="file" id="bookImage" name="bookImage" accept="image/*" required>
 
-            <button type="button" class="btn" onclick="closeForm()">Add</button>
+            <button type="submit" class="btn" onclick="closeForm()">Add</button>
         </form>
     </div>
     <!-- Vincular el archivo JavaScript -->

@@ -15,10 +15,11 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-const books = [];
+const books = require('./data');
 
 
 app.use(express.static(path.join(__dirname, '/views')));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 
 app.get('/', (req, res) => {
@@ -30,9 +31,9 @@ app.post('/save', upload.single('bookImage'), (req, res) => {
     const imagePath = req.file.path;
 
     books.push({ bookName, imagePath });
+    res.redirect('/')
     // Puedes procesar los datos y la ruta de la imagen aquí
 
-    res.send('¡Datos y imagen guardados correctamente!');
 });
 
 app.get('/books', (req, res) => {

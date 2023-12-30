@@ -22,8 +22,11 @@
             <label for="bookName">Name:</label>
             <input type="text" id="bookName" name="bookName" required>
 
-            <label for="bookImage">Image:</label>
-            <input type="file" id="bookImage" name="bookImage" accept="image/*" required>
+            <label for="bookImage" id="image-tittle">Image:</label>
+            <div class="file-upload-container">
+                <input type="file" id="bookImage" name="bookImage" accept="image/*" required>
+                <label for="bookImage" class="custom-file-upload">Choose File</label>
+            </div>
 
             <button type="submit" class="btn" onclick="closeForm()">Add</button>
         </form>

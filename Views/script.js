@@ -11,9 +11,13 @@ function getAndDisplayBooks() {
 
           // Iterar sobre la lista de libros y agregarlos al contenedor
           books.forEach(book => {
-            const bookContainer = document.createElement('a');
+            const bookContainer = document.createElement('div');
             bookContainer.className = 'book-container';
-            bookContainer.href = 'highlights.html'; // Establece el enlace a highlights.html
+        
+            // Establece un enlace único para cada libro
+            const bookLink = document.createElement('a');
+            bookLink.href = `highlights.html?title=${encodeURIComponent(book.bookName)}`;
+            bookContainer.appendChild(bookLink);
         
             const bookImageSection = document.createElement('div');
             bookImageSection.className = 'book-image-section';
@@ -24,7 +28,7 @@ function getAndDisplayBooks() {
             bookImage.alt = 'Portada del libro';
         
             bookImageSection.appendChild(bookImage);
-            bookContainer.appendChild(bookImageSection);
+            bookLink.appendChild(bookImageSection);
         
             const bookTitleSection = document.createElement('div');
             bookTitleSection.className = 'book-title-section';
@@ -33,10 +37,16 @@ function getAndDisplayBooks() {
             bookTitle.textContent = book.bookName;
         
             bookTitleSection.appendChild(bookTitle);
-            bookContainer.appendChild(bookTitleSection);
+            bookLink.appendChild(bookTitleSection);
         
             bookListContainer.appendChild(bookContainer);
-        });        
+        
+            // Agrega un evento de clic para redirigir al usuario a la página de resaltados
+            bookLink.addEventListener('click', function (event) {
+                event.preventDefault();
+                window.location.href = this.href;
+            });
+        }); 
         
       })
       .catch(error => console.error('Error al obtener los libros:', error));

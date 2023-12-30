@@ -4,6 +4,11 @@ body {
     text-align: center;
     
 }
+a {
+  text-decoration: none;
+  color:#5271FF;
+}
+
 
 h1.main-tittle{
   color: white;
@@ -76,6 +81,44 @@ h1.main-tittle{
   color: #ffffff;
 }
 
+#image-tittle{
+  margin: 10px;
+  display: inline-block;
+}
+
+/* Estilo personalizado para el input type="file" */
+input[type="file"] {
+  display: none; /* Oculta el input real */
+}
+
+.custom-file-upload {
+  background-color: #5271FF;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.custom-file-upload:hover {
+  background-color: #4057bd;
+}
+
+/* Seleccionar el label asociado al input type="file" y aplicar estilos */
+input[type="file"] + label {
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px;
+  background-color: #5271FF;
+  color: white;
+  border-radius: 5px;
+}
+
+/* Estilo al pasar el ratón por encima del label */
+input[type="file"] + label:hover {
+  background-color: #4057bd;
+}
+
 /* Estilos para el formulario */
 .addForm {
     position: relative;
@@ -85,8 +128,6 @@ h1.main-tittle{
     width: 200px;
     height: 300px;
     z-index: 2;
-    margin-top: 20px;
-    
 }
 /* Clase para ocultar el formulario por defecto */
 .form-popup {
@@ -101,6 +142,7 @@ h1.main-tittle{
     background-color: aliceblue;
     border-radius: 10px;
     z-index: 1;
+    padding: 15px;
     
 }
 
@@ -130,9 +172,10 @@ h1.main-tittle{
     width: 70%;
     border-radius: 10px;
     position: absolute; /* Cambia la posición a absoluta */
-    bottom: 40px;
-    right: 25px;
-    
+    display: inline-block;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .btn:hover{

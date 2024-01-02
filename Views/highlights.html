@@ -1,15 +1,61 @@
 <!DOCTYPE html>
 <html lang="en-US">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Highlights</title>
-    <link rel="stylesheet" type="text/css" href="highligh-styles.css">
-  </head>
-  <body>
-    <h1>Highlights for <span id="bookTitle"></span></h1>
 
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Highlights - <span id="bookTitle"></span></title>
+  <link rel="stylesheet" type="text/css" href="highligh-styles.css">
+</head>
 
-    <script src="highlights.js"></script>
-  </body>
+<body>
+  <div id="section1">
+    <h1><span id="bookTitle"></span></h1>
+    <table id="descriptionTable">
+      <tbody>
+        <tr>
+          <th>Rating</th>
+          <td>
+            <div class="star-rating">
+              <input type="radio" id="5-stars" name="rating" value="5" /><label for="5-stars"
+                title="Outstanding">★</label>
+              <input type="radio" id="4-stars" name="rating" value="4" /><label for="4-stars"
+                title="Very Good">★</label>
+              <input type="radio" id="3-stars" name="rating" value="3" /><label for="3-stars" title="Good">★</label>
+              <input type="radio" id="2-stars" name="rating" value="2" /><label for="2-stars" title="Poor">★</label>
+              <input type="radio" id="1-star" name="rating" value="1" /><label for="1-star" title="Very Poor">★</label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>Date of reading</th>
+          <td>
+            <label for="dateReading"></label>
+            <input type="date" id="fdateReading" name="dateReading">
+          </td>
+        </tr>
+        <tr>
+          <th>Tags</th>
+          <td id="tagsList">
+            <div id="existingTags"></div>
+            <div id="newTagContainer">
+              <input type="text" id="newTagInput" placeholder="Add new tag">
+              <button id="newTagButton" onclick="addNewTag()">Add</button>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>Comments</th>
+          <td><input type="text" placeholder="What was your opinion of the book?"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div id="section2">
+    <h1>Highlights<span id="bookTitle"></span></h1>
+  </div>
+
+  <script src="highlights.js"></script>
+</body>
+
 </html>

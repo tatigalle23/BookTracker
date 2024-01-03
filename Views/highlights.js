@@ -50,6 +50,117 @@ function addNewTag() {
         newTagInput.value = ''; // Limpiar el input después de agregar la etiqueta
     }
 }
+
+function saveInfo() {
+    const bookTitle = getBookTitleFromUrl();
+    const rating = document.querySelector('input[name="rating"]:checked').value;
+    const dateOfReading = document.getElementById('fdateReading').value;
+    const comments = document.querySelector('input[placeholder="What was your opinion of the book?"]').value;
+
+    // Obtén las etiquetas seleccionadas
+    const selectedTags = document.querySelectorAll('.selected-tag');
+    const tags = Array.from(selectedTags).map(tag => tag.innerText);
+
+    // Ahora puedes hacer lo que quieras con la información, como enviarla al servidor
+    // en una solicitud POST
+
+    const bookInfo = {
+        bookTitle,
+        rating,
+        dateOfReading,
+        comments,
+        tags
+    };
+    // Aquí puedes realizar una solicitud POST al servidor para guardar la información
+    fetch('/saveInfo', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookInfo),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        displaySavedInfo(bookInfo);
+        // Puedes realizar alguna acción adicional después de guardar la información
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
+
+function displaySavedInfo(bookInfo) {
+   // Hide the existing information table
+   const existingTable = document.getElementById('descriptionTable');
+   existingTable.style.display = 'none';
+
+   // Show the container with saved information
+   const infoContainer = document.getElementById('savedInfoContainer');
+   infoContainer.style.display = 'block';
+
+    console.log('infoContainer:', infoContainer);
+    // Check if the infoContainer element exists
+    if (infoContainer) {
+        // Clear existing content
+        infoContainer.innerHTML = '';
+
+        // Create elements for each piece of information
+        const ratingElement = document.createElement('div');
+        ratingElement.innerHTML = `<strong>Rating:</strong> ${createStarRating(bookInfo.rating)}`;
+        infoContainer.appendChild(ratingElement);
+
+        const dateElement = document.createElement('div');
+        dateElement.innerHTML = `<strong>Date of Reading:</strong> ${bookInfo.dateOfReading}`;
+        infoContainer.appendChild(dateElement);
+
+        const tagsElement = document.createElement('div');
+        tagsElement.innerHTML = `<strong>Tags:</strong> ${createTagElements(bookInfo.tags)}`;
+        infoContainer.appendChild(tagsElement);
+
+        const commentsElement = document.createElement('div');
+        commentsElement.innerHTML = `<strong>Comments:</strong> ${bookInfo.comments}`;
+        infoContainer.appendChild(commentsElement);
+    } else {
+        console.error('Error: infoContainer not found in the DOM');
+    }
+}
+
+
+function createStarRating(rating) {
+    const starContainer = document.createElement('div');
+    starContainer.classList.add('star-rating');
+
+    for (let i = 5; i >= 1; i--) {
+        const starInput = document.createElement('input');
+        starInput.type = 'radio';
+        starInput.id = `${i}-stars-display`;
+        starInput.name = 'rating-display';
+        starInput.value = i;
+        starInput.checked = i === rating;
+
+        const starLabel = document.createElement('label');
+        starLabel.htmlFor = `${i}-stars-display`;
+        starLabel.innerHTML = '★';
+
+        starContainer.appendChild(starInput);
+        starContainer.appendChild(starLabel);
+    }
+
+    return starContainer.outerHTML;
+}
+function createTagElements(tags) {
+    const tagContainer = document.createElement('div');
+
+    tags.forEach(tag => {
+        const tagElement = document.createElement('span');
+        tagElement.className = 'tag';
+        tagElement.innerText = tag;
+        tagContainer.appendChild(tagElement);
+    });
+
+    return tagContainer.outerHTML;
+}
 // Función principal para ejecutar cuando se carga la página
 function main() {
     displayBookTitle();

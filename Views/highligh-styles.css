@@ -43,7 +43,6 @@ body {
 #descriptionTable td:first-child {
     font-weight: bold;
 }
-
 .star-rating {
     font-size: 0;
     white-space: nowrap;
@@ -88,6 +87,12 @@ body {
     padding: 5px 10px;
     margin-right: 5px; /* Espacio entre tags */
     margin-bottom: 5px; /* Espacio entre líneas de tags */
+    font-size: 10px;
+}
+
+.tag.selected-tag {
+    background-color: #1a3fe6; /* Green color for selected tags */
+    color: #fff; /* White text for better contrast */
 }
 
 .tag:hover {
@@ -106,3 +111,12 @@ body {
     padding: 5px 10px;
     cursor: pointer;
   }
+
+#saveButton{
+    margin: 10px;
+    position: relative;
+    align-items: center;
+    top: 10%;
+    left: 50%; /* Centrar horizontalmente */
+    transform: translate(-50%); /* Ajustar al centro exacto */
+}

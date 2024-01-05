@@ -27,12 +27,14 @@ body {
 
 #descriptionTable th {
     text-align: left;
-    width: 100px; /* Ancho específico para las celdas de encabezado */
-  }
-  
-  #descriptionTable td {
-    width: 300px; /* Ancho específico para las celdas de datos */
-  }
+    width: 150px;
+    /* Ancho específico para las celdas de encabezado */
+}
+
+#descriptionTable td {
+    width: 300px;
+    /* Ancho específico para las celdas de datos */
+}
 
 #descriptionTable tr:hover {
     opacity: 2;
@@ -43,6 +45,7 @@ body {
 #descriptionTable td:first-child {
     font-weight: bold;
 }
+
 .star-rating {
     font-size: 0;
     white-space: nowrap;
@@ -72,8 +75,8 @@ body {
 .tag-container {
     margin-bottom: 10px;
     display: flex;
-  flex-wrap: wrap;
-  width: 100%; 
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .tag {
@@ -85,14 +88,18 @@ body {
     text-decoration: none;
     cursor: pointer;
     padding: 5px 10px;
-    margin-right: 5px; /* Espacio entre tags */
-    margin-bottom: 5px; /* Espacio entre líneas de tags */
+    margin-right: 5px;
+    /* Espacio entre tags */
+    margin-bottom: 5px;
+    /* Espacio entre líneas de tags */
     font-size: 10px;
 }
 
 .tag.selected-tag {
-    background-color: #1a3fe6; /* Green color for selected tags */
-    color: #fff; /* White text for better contrast */
+    background-color: #1a3fe6;
+    /* Green color for selected tags */
+    color: #fff;
+    /* White text for better contrast */
 }
 
 .tag:hover {
@@ -101,22 +108,56 @@ body {
 
 #newTagContainer {
     margin-top: 5px;
-  }
-  
-  #newTagInput {
+}
+
+#newTagInput {
     margin-right: 5px;
-  }
-  
-  #newTagButton {
+}
+
+#newTagButton {
     padding: 5px 10px;
     cursor: pointer;
-  }
+}
 
-#saveButton{
-    margin: 10px;
-    position: relative;
+#buttonContainer {
+    display: flex;
+    justify-content: center;
+    /* Centrar horizontalmente */
     align-items: center;
-    top: 10%;
-    left: 50%; /* Centrar horizontalmente */
-    transform: translate(-50%); /* Ajustar al centro exacto */
+    /* Centrar verticalmente */
+    height: 20vh;
+    /* Altura del 100% del viewport para centrar verticalmente */
+}
+
+#saveButton,
+#editButton {
+    margin: 10px;
+    display: inline-block;
+}
+
+#savedInfoContainer {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#savedInfoContainer th {
+    text-align: left;
+    width: 150px;
+    /* Ancho específico para las celdas de encabezado */
+}
+
+#savedInfoContainer td {
+    width: 300px;
+    /* Ancho específico para las celdas de datos */
+}
+
+#savedInfoContainer tr:hover {
+    opacity: 2;
+    background-color: #5e7bfe;
+}
+
+#savedInfoContainer th:first-child,
+#savedInfoContainer td:first-child {
+    font-weight: bold;
 }

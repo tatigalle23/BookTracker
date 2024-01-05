@@ -12,7 +12,7 @@ function displayBookTitle() {
     }
 }
 
-function populateTagsList(){
+function populateTagsList() {
     const tags = ['BL', 'Cultivadores', 'Easy Reading'];
     const existingTagsElement = document.getElementById('existingTags');
     const tagContainer = document.createElement('div');
@@ -79,48 +79,60 @@ function saveInfo() {
         },
         body: JSON.stringify(bookInfo),
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        displaySavedInfo(bookInfo);
-        // Puedes realizar alguna acción adicional después de guardar la información
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            displaySavedInfo(bookInfo);
+            // Puedes realizar alguna acción adicional después de guardar la información
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 function displaySavedInfo(bookInfo) {
-   // Hide the existing information table
-   const existingTable = document.getElementById('descriptionTable');
-   existingTable.style.display = 'none';
+    // Hide the existing information table
+    const existingTable = document.getElementById('descriptionTable');
+    existingTable.style.display = 'none';
 
-   // Show the container with saved information
-   const infoContainer = document.getElementById('savedInfoContainer');
-   infoContainer.style.display = 'block';
+    // Show the container with saved information
+    const infoContainer = document.getElementById('savedInfoContainer');
+    infoContainer.style.display = 'block';
 
     console.log('infoContainer:', infoContainer);
     // Check if the infoContainer element exists
     if (infoContainer) {
         // Clear existing content
         infoContainer.innerHTML = '';
+        // Crear un objeto con la información de la tabla
+        const tableData = [
+            { label: 'Rating', content: createStarRating(bookInfo.rating) },
+            { label: 'Date of Reading', content: bookInfo.dateOfReading },
+            { label: 'Tags', content: createTagElements(bookInfo.tags) },
+            { label: 'Comments', content: bookInfo.comments },
+        ];
+        // Crear un elemento de tabla
+        const tableElement = document.createElement('table');
+        const tbodyElement = document.createElement('tbody');
 
-        // Create elements for each piece of information
-        const ratingElement = document.createElement('div');
-        ratingElement.innerHTML = `<strong>Rating:</strong> ${createStarRating(bookInfo.rating)}`;
-        infoContainer.appendChild(ratingElement);
+        // Iterar sobre los datos y construir la tabla en JavaScript
+        tableData.forEach(data => {
+            const rowElement = document.createElement('tr');
+            const labelCell = document.createElement('th');
+            const contentCell = document.createElement('td');
 
-        const dateElement = document.createElement('div');
-        dateElement.innerHTML = `<strong>Date of Reading:</strong> ${bookInfo.dateOfReading}`;
-        infoContainer.appendChild(dateElement);
+            labelCell.textContent = data.label;
+            contentCell.innerHTML = data.content;
 
-        const tagsElement = document.createElement('div');
-        tagsElement.innerHTML = `<strong>Tags:</strong> ${createTagElements(bookInfo.tags)}`;
-        infoContainer.appendChild(tagsElement);
+            rowElement.appendChild(labelCell);
+            rowElement.appendChild(contentCell);
+            tbodyElement.appendChild(rowElement);
+        });
 
-        const commentsElement = document.createElement('div');
-        commentsElement.innerHTML = `<strong>Comments:</strong> ${bookInfo.comments}`;
-        infoContainer.appendChild(commentsElement);
+        // Agregar la tbody a la tabla y la tabla al contenedor
+        tableElement.appendChild(tbodyElement);
+        infoContainer.appendChild(tableElement);
+
     } else {
         console.error('Error: infoContainer not found in the DOM');
     }
@@ -168,10 +180,10 @@ function main() {
     // Puedes agregar más lógica aquí según sea necesario
 }
 
-document.getElementById('newTagInput').addEventListener('keydown', function(event) {
+document.getElementById('newTagInput').addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
-       document.getElementById('newTagButton').click();
+        document.getElementById('newTagButton').click();
     }
-   });
+});
 // Ejecutar la función principal cuando la página se haya cargado completamente
 document.addEventListener('DOMContentLoaded', main);

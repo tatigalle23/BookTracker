@@ -90,6 +90,23 @@ function saveInfo() {
         });
 }
 
+function editInfo() {
+    const existingTable = document.getElementById('descriptionTable');
+    existingTable.style.display = 'block';
+    const savedInfoContainer = document.getElementById('savedInfoContainer');
+    savedInfoContainer.style.display = 'none';
+    // Obtén el contenedor donde deseas agregar la tabla    
+
+}
+function toggleInfo() {
+    // Mostrar el contenedor de información guardada
+    const savedInfoContainer = document.getElementById('savedInfoContainer');
+    savedInfoContainer.style.display = 'block';
+
+    // Ocultar el contenedor de edición de información
+    const descriptionTableContainer = document.getElementById('descriptionTable');
+    descriptionTableContainer.style.display = 'none';
+}
 function displaySavedInfo(bookInfo) {
     // Hide the existing information table
     const existingTable = document.getElementById('descriptionTable');

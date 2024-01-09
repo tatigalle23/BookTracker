@@ -199,25 +199,17 @@ function displaySavedInfo(bookInfo) {
     }
 }
 
-
 function createStarRating(rating) {
     const starContainer = document.createElement('div');
     starContainer.classList.add('star-rating');
 
     for (let i = 5; i >= 1; i--) {
-        const starInput = document.createElement('input');
-        starInput.type = 'radio';
-        starInput.id = `${i}-stars-display`;
-        starInput.name = 'rating-display';
-        starInput.value = i;
-        starInput.checked = i === rating;
+        const starElement = document.createElement('span');
+        starElement.classList.add('star');
+        starElement.innerHTML = '★';
+        starElement.style.color = i <= rating ? '#f2be3e' : '#8f8f8f';
 
-        const starLabel = document.createElement('label');
-        starLabel.htmlFor = `${i}-stars-display`;
-        starLabel.innerHTML = '★';
-
-        starContainer.appendChild(starInput);
-        starContainer.appendChild(starLabel);
+        starContainer.appendChild(starElement);
     }
 
     return starContainer.outerHTML;

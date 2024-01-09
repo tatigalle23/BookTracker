@@ -46,6 +46,10 @@ body {
     font-weight: bold;
 }
 
+.-star-display{
+    color: #f2be3e;
+}
+
 .star-rating {
     font-size: 0;
     white-space: nowrap;
@@ -69,6 +73,18 @@ body {
 }
 
 .star-rating input[type="radio"]:checked~label {
+    color: #f2be3e;
+}
+
+.star-rating span {
+    display: inline-block;
+    cursor: pointer;
+    color: #8f8f8f;
+    font-size: 30px;
+    padding: 0;
+}
+
+.star-rating span.star {
     color: #f2be3e;
 }
 

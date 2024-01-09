@@ -15,6 +15,10 @@ function displayBookTitle() {
 function populateTagsList() {
     const tags = ['BL', 'Cultivadores', 'Easy Reading'];
     const existingTagsElement = document.getElementById('existingTags');
+
+    // Limpiar el contenido existente antes de agregar nuevas etiquetas
+    existingTagsElement.innerHTML = '';
+
     const tagContainer = document.createElement('div');
     tagContainer.id = 'tagContainer';
 
@@ -131,16 +135,22 @@ function populateEditForm(bookInfo) {
 
     // Manejar las etiquetas seleccionadas
     const existingTags = bookInfo.tags;
-    const tagElements = document.querySelectorAll('.tag');
+    const tagContainer = document.getElementById('tagContainer');
+    
+    // Limpiar las etiquetas existentes antes de agregar las nuevas
+    tagContainer.innerHTML = '';
 
-    tagElements.forEach(tagElement => {
-        const tagText = tagElement.innerText;
-        const isSelected = existingTags.includes(tagText);
-        tagElement.classList.toggle('selected-tag', isSelected);
+    existingTags.forEach(tag => {
+        const tagElement = document.createElement('span');
+        tagElement.className = 'tag selected-tag';
+        tagElement.innerText = tag;
+        tagElement.addEventListener('click', toggleTag);
+        tagContainer.appendChild(tagElement);
     });
 
     document.querySelector('input[placeholder="What was your opinion of the book?"]').value = bookInfo.comments;
 }
+
 function displaySavedInfo(bookInfo) {
     // Hide the existing information table
     const existingTable = document.getElementById('descriptionTable');

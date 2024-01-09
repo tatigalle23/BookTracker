@@ -81,11 +81,32 @@ app.post('/saveInfo', (req, res) => {
     const highlights= loadDataFromFile(dataPath);
     console.log(bookInfo);
 
-    highlights.push(bookInfo);
+    const existingInfoIndex = highlights.findIndex(info => info.bookTitle === bookInfo.bookTitle);
+    if (existingInfoIndex !== -1) {
+        // Si ya hay información, actualizarla
+        highlights[existingInfoIndex] = bookInfo;
+    } else {
+        // Si no hay información, agregarla como nueva
+        highlights.push(bookInfo);
+    }
     
     saveDataToFile(highlights,dataPath);
     res.json({ message: 'Información guardada exitosamente' });
 });
+
+app.get('/getInfo', (req, res) => {
+    const dataPath = path.join(__dirname, 'data', 'info.json');
+    const bookTitle = req.query.title;
+    
+    const highlights = loadDataFromFile(dataPath);
+
+    // Buscar la información del libro por título
+    const bookInfo = highlights.find(info => info.bookTitle === bookTitle);
+
+    // Devolver la información encontrada
+    res.json(bookInfo);
+});
+
 
 
 app.listen(port, () => {

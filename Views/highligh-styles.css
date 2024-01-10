@@ -12,13 +12,6 @@ body {
     padding: 20px;
 }
 
-#section2 {
-    flex: 1;
-    background-color: #5271FF;
-    padding: 20px;
-
-}
-
 #descriptionTable {
     width: 100%;
     border-collapse: collapse;
@@ -46,7 +39,7 @@ body {
     font-weight: bold;
 }
 
-.-star-display{
+.-star-display {
     color: #f2be3e;
 }
 
@@ -176,4 +169,48 @@ body {
 #savedInfoContainer th:first-child,
 #savedInfoContainer td:first-child {
     font-weight: bold;
+}
+
+#section2 {
+    flex: 1;
+    background-color: #5271FF;
+    padding: 20px;
+
+}
+.input-notes{
+    position: relative;
+    overflow: hidden;
+}
+#notes {
+    background-color:#5271FF ;
+    border: 0.2px solid #5e7bfe;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; 
+    padding: 10px; 
+
+}
+
+#notes[type="text"]{
+    top:0;
+    left:0;
+    color:white;
+    text-align: left;
+}
+#notes:hover {
+    background-color: #4663e3d8;
+}
+
+#notes:focus {
+    background-color: #4663e3d8;
+    text-align: left;
+}
+
+#notes::placeholder {
+    text-align: left;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: rgb(231, 231, 231);
 }

@@ -232,6 +232,10 @@ function showEditTable() {
     const savedInfoContainer = document.getElementById('savedInfoContainer');
     savedInfoContainer.style.display = 'none';
 }
+//**SECTION 2 */
+
+
+
 // Función principal para ejecutar cuando se carga la página
 function main() {
     const bookTitle = getBookTitleFromUrl();

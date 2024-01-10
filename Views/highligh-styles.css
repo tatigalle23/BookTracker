@@ -175,12 +175,10 @@ body {
     flex: 1;
     background-color: #5271FF;
     padding: 20px;
+    position: relative;
 
 }
-.input-notes{
-    position: relative;
-    overflow: hidden;
-}
+
 #notes {
     background-color:#5271FF ;
     border: 0.2px solid #5e7bfe;
@@ -189,6 +187,7 @@ body {
     height: 100%;
     border-radius: 10px; 
     padding: 10px; 
+    border-collapse: collapse;
 
 }
 
@@ -197,6 +196,8 @@ body {
     left:0;
     color:white;
     text-align: left;
+    overflow-wrap: break-word;
+    
 }
 #notes:hover {
     background-color: #4663e3d8;

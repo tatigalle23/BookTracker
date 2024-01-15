@@ -277,12 +277,7 @@ function populatedNotesInfo(bookInfo) {
     document.getElementById('noteText').value = bookInfo.notes;
 }
 
-// Función principal para ejecutar cuando se carga la página
-function main() {
-    const bookTitle = getBookTitleFromUrl();
-    displayBookTitle();
-    populateTagsList();
-    displayNotes();
+function mainDisplay(bookTitle){
     if (bookTitle) {
         fetch(`/getInfo?title=${encodeURIComponent(bookTitle)}`)
             .then(response => response.json())
@@ -304,6 +299,16 @@ function main() {
         // Si no hay título, mostrar la tabla de edición
         showEditTable();
     }
+
+}
+// Función principal para ejecutar cuando se carga la página
+function main() {
+    const bookTitle = getBookTitleFromUrl();
+    document.title = `Highlights - ${bookTitle || 'Libro sin título'}`;
+    mainDisplay(bookTitle);
+    displayBookTitle();
+    populateTagsList();
+    displayNotes();
 
 }
 

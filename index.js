@@ -140,16 +140,6 @@ app.get('/getNotes', (req, res) => {
     res.json(bookInfo);
 });
 
-function loadDataOnStart() {
-    // Cargar información al inicio
-    const dataPath = path.join(__dirname, 'data', 'notes.json');
-    if (fs.existsSync(dataPath)) {
-        const highlights = loadDataFromFile(dataPath);
-        console.log('Información cargada al inicio:', highlights);
-    }
-}
-
-
 app.listen(port, () => {
     console.log(`Servidor escuchando en http://localhost:${port}`);
 });

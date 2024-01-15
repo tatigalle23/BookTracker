@@ -233,12 +233,6 @@ function showEditTable() {
     savedInfoContainer.style.display = 'none';
 }
 //**SECTION 2 */
-function checkEnter(event) {
-    if (event.key === 'Enter') {
-        saveNotes();
-    }
-}
-
 function saveNotes() {
     const bookTitle = getBookTitleFromUrl();
     const notes = document.getElementById('noteText').value;
@@ -267,17 +261,20 @@ function saveNotes() {
 
 function displayNotes() {
     const bookTitle = getBookTitleFromUrl();
-    fetch(`/getNotes?title=${encodeURIComponent(bookTitle)}`) // Puedes crear una nueva ruta en tu servidor para obtener las notas
-        .then(response => response.json())
-        .then(data => {
-            const notesDisplay = document.getElementById('notesDisplay');
-            console.log('Notes data:', data);
-            notesDisplay.innerHTML = `<strong>Notas del Libro:</strong><br>${data.notes || 'No hay notas disponibles.'}`;
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+    if (bookTitle) {
+        fetch(`/getNotes?title=${encodeURIComponent(bookTitle)}`) // Puedes crear una nueva ruta en tu servidor para obtener las notas
+            .then(response => response.json())
+            .then(data => {
+                populatedNotesInfo(data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
 
+}
+function populatedNotesInfo(bookInfo) {
+    document.getElementById('noteText').value = bookInfo.notes;
 }
 
 // Función principal para ejecutar cuando se carga la página

@@ -179,7 +179,7 @@ body {
 
 }
 
-#notes {
+#noteText {
     background-color:#5271FF ;
     border: 0.2px solid #5e7bfe;
     position: relative;
@@ -191,27 +191,23 @@ body {
 
 }
 
-#notes[type="text"]{
-    top:0;
-    left:0;
-    color:white;
-    text-align: left;
-    overflow-wrap: break-word;
-    
-}
-#notes:hover {
+#noteText:hover {
     background-color: #4663e3d8;
 }
 
-#notes:focus {
+#noteText:focus {
     background-color: #4663e3d8;
     text-align: left;
 }
 
-#notes::placeholder {
-    text-align: left;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: rgb(231, 231, 231);
+#notesDisplay{
+    background-color:#5271FF ;
+    border: 0.2px solid #5e7bfe;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px; 
+    padding: 10px; 
+    border-collapse: collapse;
+
+
 }

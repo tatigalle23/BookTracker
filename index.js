@@ -107,6 +107,47 @@ app.get('/getInfo', (req, res) => {
     res.json(bookInfo);
 });
 
+app.post('/saveNotes', (req, res) => {
+    
+    const dataPath = path.join(__dirname, 'data', 'notes.json');
+    const bookInfo = req.body; 
+    const highlights= loadDataFromFile(dataPath);
+    console.log(bookInfo);
+
+    const existingInfoIndex = highlights.findIndex(info => info.bookTitle === bookInfo.bookTitle);
+    if (existingInfoIndex !== -1) {
+        // Si ya hay información, actualizarla
+        highlights[existingInfoIndex] = bookInfo;
+    } else {
+        // Si no hay información, agregarla como nueva
+        highlights.push(bookInfo);
+    }
+    
+    saveDataToFile(highlights,dataPath);
+    res.json({ message: 'Información guardada exitosamente' });
+});
+
+app.get('/getNotes', (req, res) => {
+    const dataPath = path.join(__dirname, 'data', 'notes.json');
+    const bookTitle = req.query.title;
+    
+    const highlights = loadDataFromFile(dataPath);
+
+    // Buscar la información del libro por título
+    const bookInfo = highlights.find(info => info.bookTitle === bookTitle);
+
+    // Devolver la información encontrada
+    res.json(bookInfo);
+});
+
+function loadDataOnStart() {
+    // Cargar información al inicio
+    const dataPath = path.join(__dirname, 'data', 'notes.json');
+    if (fs.existsSync(dataPath)) {
+        const highlights = loadDataFromFile(dataPath);
+        console.log('Información cargada al inicio:', highlights);
+    }
+}
 
 
 app.listen(port, () => {

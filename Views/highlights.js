@@ -102,7 +102,7 @@ function editInfo() {
 
     // Obtén el contenedor donde deseas agregar la tabla    
     const infoContainer = document.getElementById('descriptionTable');
-    
+
     // Llamar a la función para cargar y mostrar la información existente
     loadAndDisplayExistingInfo();
 }
@@ -136,7 +136,7 @@ function populateEditForm(bookInfo) {
     // Manejar las etiquetas seleccionadas
     const existingTags = bookInfo.tags;
     const tagContainer = document.getElementById('tagContainer');
-    
+
     // Limpiar las etiquetas existentes antes de agregar las nuevas
     tagContainer.innerHTML = '';
 
@@ -233,14 +233,59 @@ function showEditTable() {
     savedInfoContainer.style.display = 'none';
 }
 //**SECTION 2 */
+function checkEnter(event) {
+    if (event.key === 'Enter') {
+        saveNotes();
+    }
+}
 
+function saveNotes() {
+    const bookTitle = getBookTitleFromUrl();
+    const notes = document.getElementById('noteText').value;
 
+    const bookInfo = {
+        bookTitle,
+        notes
+    };
+
+    fetch('/saveNotes', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bookInfo),
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            displayNotes();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+function displayNotes() {
+    const bookTitle = getBookTitleFromUrl();
+    fetch(`/getNotes?title=${encodeURIComponent(bookTitle)}`) // Puedes crear una nueva ruta en tu servidor para obtener las notas
+        .then(response => response.json())
+        .then(data => {
+            const notesDisplay = document.getElementById('notesDisplay');
+            console.log('Notes data:', data);
+            notesDisplay.innerHTML = `<strong>Notas del Libro:</strong><br>${data.notes || 'No hay notas disponibles.'}`;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
+}
 
 // Función principal para ejecutar cuando se carga la página
 function main() {
     const bookTitle = getBookTitleFromUrl();
     displayBookTitle();
     populateTagsList();
+    displayNotes();
     if (bookTitle) {
         fetch(`/getInfo?title=${encodeURIComponent(bookTitle)}`)
             .then(response => response.json())

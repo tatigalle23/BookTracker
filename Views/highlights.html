@@ -58,9 +58,10 @@
   </div>
   <div id="section2">
     <h1>Highlights and Notes</h1>
-    
-      <input type="text" id="notes" placeholder="Highligths and notes">
-   
+
+    <textarea id="noteText" cols="50" rows="4" style="resize: vertical;" onkeydown="checkEnter(event)"></textarea>
+  </textarea>
+  <div id="notesDisplay">  </div>   
   </div>
 
   <script src="highlights.js"></script>

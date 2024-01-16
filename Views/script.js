@@ -53,17 +53,36 @@ function getAndDisplayBooks() {
 }
 
 // Función para abrir el formulario
-function openForm() {
-  document.getElementById('addBookForm').style.display = 'block';
+function openForm(event) {
+  event.stopPropagation(); // Detener la propagación del evento
+
+  const addBookForm = document.getElementById('addBookForm');
+  addBookForm.style.display = 'block';
+  
+  // Agregar event listener para clicks fuera del formulario
+  document.addEventListener('click', handleClickOutside);
 }
 
 // Función para cerrar el formulario
 function closeForm() {
-  document.getElementById('addBookForm').style.display = 'none';
+  const addBookForm = document.getElementById('addBookForm');
+  addBookForm.style.display = 'none';
+  
+  // Remover event listener para clicks fuera del formulario
+  document.removeEventListener('click', handleClickOutside);
 }
 
-// Agregar un evento clic al botón
-document.getElementById('addBookButton').addEventListener('click', openForm);
+// Función para manejar clicks fuera del formulario
+function handleClickOutside(event) {
+  const addBookForm = document.getElementById('addBookForm');
+  if (addBookForm && !addBookForm.contains(event.target)) {
+    closeForm();
+  }
+}
+
+// Agregar event listener al botón
+const addBookButton = document.getElementById('addBookButton');
+addBookButton.addEventListener('click', openForm);
 
 // Llamar a la función para obtener y mostrar los libros cuando la página carga
 document.addEventListener('DOMContentLoaded', getAndDisplayBooks);

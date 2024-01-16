@@ -1,22 +1,27 @@
 body {
-    background-color: #5271FF;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-align: center;
-    
+  background-color: #5271FF;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-align: center;
+
 }
+
 a {
   text-decoration: none;
-  color:#5271FF;
+  color: #5271FF;
 }
 
 
-h1.main-tittle{
+h1.main-tittle {
   color: white;
 }
-#bookList{
-  display: flex; /* Utilizar flexbox para alinear los libros en línea */
-  flex-wrap: wrap; /* Permitir el ajuste de línea cuando no hay suficiente espacio */
-  justify-content: flex-start; /* Alinear los libros al principio de la línea */
+
+#bookList {
+  display: flex;
+  /* Utilizar flexbox para alinear los libros en línea */
+  flex-wrap: wrap;
+  /* Permitir el ajuste de línea cuando no hay suficiente espacio */
+  justify-content: flex-start;
+  /* Alinear los libros al principio de la línea */
   padding: 20px;
 }
 
@@ -47,8 +52,9 @@ h1.main-tittle{
 .book-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Centrar y recortar la imagen para que se ajuste al contenedor */
-  border-radius: 10px ;
+  object-fit: cover;
+  /* Centrar y recortar la imagen para que se ajuste al contenedor */
+  border-radius: 10px;
 }
 
 /* Estilos para la sección del título del libro */
@@ -73,7 +79,7 @@ h1.main-tittle{
   background-color: transparent;
   cursor: pointer;
   z-index: 1;
-    
+
 }
 
 #addBookButton i {
@@ -81,14 +87,15 @@ h1.main-tittle{
   color: #ffffff;
 }
 
-#image-tittle{
+#image-tittle {
   margin: 10px;
   display: inline-block;
 }
 
 /* Estilo personalizado para el input type="file" */
 input[type="file"] {
-  display: none; /* Oculta el input real */
+  display: none;
+  /* Oculta el input real */
 }
 
 .custom-file-upload {
@@ -105,7 +112,7 @@ input[type="file"] {
 }
 
 /* Seleccionar el label asociado al input type="file" y aplicar estilos */
-input[type="file"] + label {
+input[type="file"]+label {
   cursor: pointer;
   display: inline-block;
   padding: 10px;
@@ -115,71 +122,77 @@ input[type="file"] + label {
 }
 
 /* Estilo al pasar el ratón por encima del label */
-input[type="file"] + label:hover {
+input[type="file"]+label:hover {
   background-color: #4057bd;
 }
 
 /* Estilos para el formulario */
 .addForm {
-    position: relative;
-    top: 50%; /* Centrar verticalmente */
-    left: 50%; /* Centrar horizontalmente */
-    transform: translate(-50%, -50%); /* Ajustar al centro exacto */
-    width: 200px;
-    height: 300px;
-    z-index: 2;
+  position: relative;
+  top: 50%;
+  /* Centrar verticalmente */
+  left: 50%;
+  /* Centrar horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Ajustar al centro exacto */
+  width: 200px;
+  height: 300px;
+  z-index: 2;
 }
+
 /* Clase para ocultar el formulario por defecto */
 .form-popup {
   display: none;
-    position: fixed;
-    top: 50%; /* Centrar verticalmente */
-    left: 50%; /* Centrar horizontalmente */
-    transform: translate(-50%, -50%); /* Ajustar al centro exacto */
-    width: 200px;
-    height: 300px;
-    box-shadow: 0 0 20px rgba(1, 1, 1, 0.3);
-    background-color: aliceblue;
-    border-radius: 10px;
-    z-index: 1;
-    padding: 15px;
-    
+  position: fixed;
+  top: 50%;
+  /* Centrar verticalmente */
+  left: 50%;
+  /* Centrar horizontalmente */
+  transform: translate(-50%, -50%);
+  /* Ajustar al centro exacto */
+  width: 200px;
+  height: 300px;
+  box-shadow: 0 0 20px rgba(1, 1, 1, 0.3);
+  background-color: aliceblue;
+  border-radius: 10px;
+  z-index: 1;
+  padding: 15px;
+
 }
 
 /* Full-width input fields */
 .addForm input[type=text] {
-    width: 70%;
-    padding: 10px;
-    margin:  10px;
-    border: none;
-    color:white;
-    background: #5271FF;
-  }
-  
-  /* When the inputs get focus, do something */
-  .addForm input[type=text]:focus{
-    background-color: #4057bd;
-    outline: none;
-  }
-  
-  /* Set a style for the submit/login button */
-  .btn {
-    background-color: #5271FF;
-    color: white;
-    padding: 16px 10px;
-    border: none;
-    cursor: pointer;
-    width: 70%;
-    border-radius: 10px;
-    position: absolute; /* Cambia la posición a absoluta */
-    display: inline-block;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
+  width: 70%;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  color: white;
+  background: #5271FF;
+}
 
-  .btn:hover{
-    opacity: 2;
-  }
+/* When the inputs get focus, do something */
+.addForm input[type=text]:focus {
+  background-color: #4057bd;
+  outline: none;
+}
 
-  
+/* Set a style for the submit/login button */
+.btn {
+  background-color: #5271FF;
+  color: white;
+  padding: 16px 10px;
+  border: none;
+  cursor: pointer;
+  width: 70%;
+  border-radius: 10px;
+  position: absolute;
+  /* Cambia la posición a absoluta */
+  display: inline-block;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn:hover {
+  opacity: 2;
+}

@@ -60,10 +60,6 @@ app.post('/save', upload.single('bookImage'), (req, res) => {
 
 });
 
-app.get('/highlights', (req, res) => {
-    res.sendFile(path.join(__dirname, '/Views/highlights.html'));
-});
-
 app.get('/books', (req, res) => {
     // Devuelve los libros almacenados como respuesta JSON
     
@@ -74,6 +70,10 @@ app.get('/books', (req, res) => {
 });
 
 //**HIGHLIGHTS */
+app.get('/highlights', (req, res) => {
+    res.sendFile(path.join(__dirname, '/Views/highlights.html'));
+});
+
 app.post('/saveInfo', (req, res) => {
     
     const dataPath = path.join(__dirname, 'data', 'info.json');

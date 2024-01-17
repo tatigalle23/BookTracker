@@ -63,6 +63,9 @@ h1.main-tittle {
   padding: 20px 10px 10px 10px;
   box-sizing: border-box;
 }
+.book-title-section:hover {
+  opacity:.75;
+}
 
 /* Estilos para el texto del libro dentro de la sección del título */
 .book-container h3 {
@@ -86,6 +89,9 @@ h1.main-tittle {
   font-size: 40px;
   color: #ffffff;
 }
+#addBookButton:hover{
+  opacity: .75;
+}
 
 #eraseButton{
   position: fixed;
@@ -104,6 +110,10 @@ h1.main-tittle {
   color: #ffffff;
 }
 
+#eraseButton:hover{
+  opacity: .75;
+}
+
 .delete-button {
   display: flex;
   margin-left: 190px;
@@ -111,14 +121,19 @@ h1.main-tittle {
   top: 100px;
   width: 30px;
   height: 30px;
-  color: #ff0000;
+  color: rgb(225, 4, 4);
   background-color: transparent;
-  border: white;
+  border: none;
   cursor: pointer;
   z-index: 1;
 }
 .delete-button i {
-  font-size: 20px;
+  font-size: 25px;
+  border: 1.2px solid #fdfdfd;
+  border-radius: 50%; 
+}
+.delete-button:hover{
+  opacity: .75;
 }
 
 #image-tittle {

@@ -1,3 +1,4 @@
+let isEraseMode = false;
 // Función para obtener y mostrar los libros desde el servidor
 function getAndDisplayBooks() {
   // Hacer una solicitud al servidor para obtener los libros
@@ -38,6 +39,21 @@ function getAndDisplayBooks() {
         
             bookTitleSection.appendChild(bookTitle);
             bookLink.appendChild(bookTitleSection);
+
+            if (isEraseMode) {
+              const deleteButton = document.createElement('button');
+              deleteButton.className = 'delete-button';
+              deleteButton.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
+              console.log("SE DESPLEGO");
+        
+              deleteButton.addEventListener('click', function (event) {
+                  event.stopPropagation();
+                  deleteBook(book.id);
+              });
+        
+              bookContainer.appendChild(deleteButton);
+              console.log("BOTON");
+            }
         
             bookListContainer.appendChild(bookContainer);
         
@@ -51,6 +67,28 @@ function getAndDisplayBooks() {
       })
       .catch(error => console.error('Error al obtener los libros:', error));
 }
+
+function eraseBook(){
+  isEraseMode = !isEraseMode;
+  console.log("ENTRO");
+  getAndDisplayBooks();
+
+}
+
+function deleteBook(bookId) {
+  // Hacer una solicitud al servidor para eliminar el libro
+  fetch(`/deleteBook/${bookId}`, {
+    method: 'DELETE',
+  })
+    .then(response => response.json())
+    .then(result => {
+      // Vuelve a cargar los libros después de la eliminación
+      getAndDisplayBooks();
+      console.log(result.message);
+    })
+    .catch(error => console.error('Error al eliminar el libro:', error));
+}
+
 
 // Función para abrir el formulario
 function openForm(event) {

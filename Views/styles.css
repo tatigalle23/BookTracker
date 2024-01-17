@@ -87,6 +87,40 @@ h1.main-tittle {
   color: #ffffff;
 }
 
+#eraseButton{
+  position: fixed;
+  bottom: 20px;
+  right: 70px;
+  width: 60px;
+  height: 60px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  z-index: 1;
+}
+
+#eraseButton i{
+  font-size: 40px;
+  color: #ffffff;
+}
+
+.delete-button {
+  display: flex;
+  margin-left: 190px;
+  position: absolute;
+  top: 100px;
+  width: 30px;
+  height: 30px;
+  color: #ff0000;
+  background-color: transparent;
+  border: white;
+  cursor: pointer;
+  z-index: 1;
+}
+.delete-button i {
+  font-size: 20px;
+}
+
 #image-tittle {
   margin: 10px;
   display: inline-block;

@@ -16,6 +16,9 @@
     <button id="addBookButton" onclick="openForm()">
         <i class="fa-solid fa-circle-plus"></i>
     </button>
+    <button id="eraseButton" onclick="eraseBook()">
+        <i class="fa-solid fa-circle-minus"></i>
+    </button>
     <!-- Formulario oculto -->
     <div id="addBookForm" class="form-popup">
         <form class="addForm" action="/save" method="post" enctype="multipart/form-data">
@@ -35,5 +38,4 @@
     <!-- Vincular el archivo JavaScript -->
     <script src="script.js"></script>
 </body>
-
 </html>

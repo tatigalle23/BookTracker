@@ -69,6 +69,44 @@ app.get('/books', (req, res) => {
     res.json(books);
 });
 
+// Agrega una nueva ruta para manejar la eliminación de libros
+app.delete('/deleteBook/:id', (req, res) => {
+    const dataPath = path.join(__dirname, 'data', 'books.json');
+    const books = loadDataFromFile(dataPath);
+    const bookId = req.params.id;
+
+    // Busca el libro que se va a eliminar
+    const bookToDelete = books.find(book => book.id === bookId);
+
+    if (bookToDelete) {
+        // Elimina la foto asociada al libro
+        const imagePath = bookToDelete.imagePath;
+        fs.unlinkSync(imagePath);
+
+        // Elimina los datos de información asociados al libro
+        const infoPath = path.join(__dirname, 'data', 'info.json');
+        const infoData = loadDataFromFile(infoPath);
+        const updatedInfoData = infoData.filter(info => info.bookTitle !== bookToDelete.bookName);
+        saveDataToFile(updatedInfoData, infoPath);
+
+        // Elimina los datos de notas asociados al libro
+        const notesPath = path.join(__dirname, 'data', 'notes.json');
+        const notesData = loadDataFromFile(notesPath);
+        const updatedNotesData = notesData.filter(note => note.bookTitle !== bookToDelete.bookName);
+        saveDataToFile(updatedNotesData, notesPath);
+
+        // Filtra los libros, excluyendo el libro que se va a eliminar
+        const updatedBooks = books.filter(book => book.id !== bookId);
+
+        // Guarda la nueva lista de libros
+        saveDataToFile(updatedBooks, dataPath);
+
+        res.json({ message: 'Libro y datos asociados eliminados exitosamente' });
+    } else {
+        res.status(404).json({ message: 'Libro no encontrado' });
+    }
+});
+
 //**HIGHLIGHTS */
 app.get('/highlights', (req, res) => {
     res.sendFile(path.join(__dirname, '/Views/highlights.html'));

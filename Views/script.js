@@ -44,7 +44,6 @@ function getAndDisplayBooks() {
               const deleteButton = document.createElement('button');
               deleteButton.className = 'delete-button';
               deleteButton.innerHTML = '<i class="fa-solid fa-circle-xmark"></i>';
-              console.log("SE DESPLEGO");
         
               deleteButton.addEventListener('click', function (event) {
                   event.stopPropagation();
@@ -52,7 +51,6 @@ function getAndDisplayBooks() {
               });
         
               bookContainer.appendChild(deleteButton);
-              console.log("BOTON");
             }
         
             bookListContainer.appendChild(bookContainer);
@@ -70,7 +68,6 @@ function getAndDisplayBooks() {
 
 function eraseBook(){
   isEraseMode = !isEraseMode;
-  console.log("ENTRO");
   getAndDisplayBooks();
 
 }

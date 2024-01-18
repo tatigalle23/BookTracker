@@ -13,9 +13,6 @@ function displayBookTitle() {
 }
 
 function populateTagsList() {
-    const tags = ['BL', 'Cultivadores', 'Easy Reading'];
-    const existingTagsElement = document.getElementById('existingTags');
-
     // Limpiar el contenido existente antes de agregar nuevas etiquetas
     existingTagsElement.innerHTML = '';
 
@@ -58,8 +55,10 @@ function addNewTag() {
 function saveInfo() {
     const bookTitle = getBookTitleFromUrl();
     const rating = document.querySelector('input[name="rating"]:checked').value;
+    const author= document.querySelector('input[placeholder="Author name"]').value;
     const dateOfReading = document.getElementById('fdateReading').value;
     const comments = document.querySelector('input[placeholder="What was your opinion of the book?"]').value;
+    const song= document.querySelector('input[placeholder="Embedded Link"]').value
 
     // Obtén las etiquetas seleccionadas
     const selectedTags = document.querySelectorAll('.selected-tag');
@@ -70,10 +69,12 @@ function saveInfo() {
 
     const bookInfo = {
         bookTitle,
+        author,
         rating,
         dateOfReading,
         comments,
-        tags
+        tags,
+        song
     };
     // Aquí puedes realizar una solicitud POST al servidor para guardar la información
     fetch('/saveInfo', {
@@ -128,10 +129,13 @@ function loadAndDisplayExistingInfo() {
     }
 }
 
+//Have the old values when editing in the boxes
 function populateEditForm(bookInfo) {
     // Llenar las casillas de edición con la información existente
     document.querySelector('input[name="rating"][value="' + bookInfo.rating + '"]').checked = true;
+    document.querySelector('input[placeholder="Author name"]').value = bookInfo.author;
     document.getElementById('fdateReading').value = bookInfo.dateOfReading;
+    document.querySelector('input[placeholder="Embedded Link"]').value = bookInfo.song;
 
     // Manejar las etiquetas seleccionadas
     const existingTags = bookInfo.tags;
@@ -147,7 +151,7 @@ function populateEditForm(bookInfo) {
         tagElement.addEventListener('click', toggleTag);
         tagContainer.appendChild(tagElement);
     });
-
+    
     document.querySelector('input[placeholder="What was your opinion of the book?"]').value = bookInfo.comments;
 }
 
@@ -168,9 +172,11 @@ function displaySavedInfo(bookInfo) {
         // Crear un objeto con la información de la tabla
         const tableData = [
             { label: 'Rating', content: createStarRating(bookInfo.rating) },
+            { label: 'Author', content:bookInfo.author},
             { label: 'Date of Reading', content: bookInfo.dateOfReading },
             { label: 'Tags', content: createTagElements(bookInfo.tags) },
             { label: 'Comments', content: bookInfo.comments },
+            {label: 'Playlist/Song', content: createPlaylistElement(bookInfo.song) },
         ];
         // Crear un elemento de tabla
         const tableElement = document.createElement('table');
@@ -194,8 +200,21 @@ function displaySavedInfo(bookInfo) {
         tableElement.appendChild(tbodyElement);
         infoContainer.appendChild(tableElement);
 
+
+
     } else {
         console.error('Error: infoContainer not found in the DOM');
+    }
+}
+
+function createPlaylistElement(embeddedLink) {
+    // Verificar si el enlace está presente
+    if (embeddedLink) {
+        // Devolver el elemento iframe con el enlace incrustado
+        return embeddedLink;
+    } else {
+        // Devolver un mensaje indicando que no hay enlace disponible
+        return 'No playlist or song provided';
     }
 }
 

@@ -145,6 +145,21 @@ app.get('/getInfo', (req, res) => {
     res.json(bookInfo);
 });
 
+//TAGS
+app.get('/getTags', (req, res) => {
+    const tagsPath = path.join(__dirname, 'data', 'tags.json');
+    const tags = loadDataFromFile(tagsPath);
+    console.log(tags);
+    res.json(tags);
+});
+
+app.post('/saveTags',(req,res)=>{
+    const tags=req.body;
+    const tagsPath = path.join(__dirname, 'data', 'tags.json');
+    saveDataToFile(tags, tagsPath);
+    res.json({message: 'tag saved'});
+});
+
 app.post('/saveNotes', (req, res) => {
     
     const dataPath = path.join(__dirname, 'data', 'notes.json');

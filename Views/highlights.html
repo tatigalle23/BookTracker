@@ -43,11 +43,10 @@
         <tr>
           <th>Tags</th>
           <td id="tagsList">
-            <div id="existingTags"></div>
-            <div id="newTagContainer">
-              <input type="text" id="newTagInput" placeholder="Add new tag">
-              <button id="newTagButton" onclick="addNewTag()">Add</button>
-            </div>
+            <select id="tags" name="tags" multiple></select>
+            <input type="text" id="newTagInput" placeholder="Add new tag">
+            <button id="newTagButton" onclick="addNewTag()">Add</button>
+
           </td>
         </tr>
         <tr>
@@ -69,7 +68,7 @@
     <h1>Highlights and Notes</h1>
 
     <textarea id="noteText" cols="50" rows="4" style="resize: vertical;" onblur="saveNotes()"></textarea>
-  </textarea>  
+    </textarea>
   </div>
 
   <script src="highlights.js"></script>

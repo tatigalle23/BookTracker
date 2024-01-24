@@ -61,24 +61,6 @@ function addNewTag() {
     }
 }
 
-// function addNewTagToDropdown() {
-//     const newTagValue = document.getElementById('newTagInput').value;
-
-//     if (newTagValue.trim() !== '') {
-//        const selectElement = document.getElementById('tags');
-//        const newOption = document.createElement('option');
-//        newOption.value = newTagValue;
-//        newOption.textContent = newTagValue;
-//        selectElement.appendChild(newOption);
-
-//        const currentTags = Array.from(selectElement.options).map(option => option.value);
-//        localStorage.setItem('tags', JSON.stringify(currentTags));
-
-//        document.getElementById('newTagInput').value = '';
-//     }
-//  }
-
-
 function saveInfo() {
     const bookTitle = getBookTitleFromUrl();
     const rating = document.querySelector('input[name="rating"]:checked').value;
@@ -125,10 +107,7 @@ function editInfo() {
     const existingTable = document.getElementById('descriptionTable');
     existingTable.style.display = 'block';
     const savedInfoContainer = document.getElementById('savedInfoContainer');
-    savedInfoContainer.style.display = 'none';
-
-    // Obtén el contenedor donde deseas agregar la tabla    
-    const infoContainer = document.getElementById('descriptionTable');
+    savedInfoContainer.style.display = 'none';    
 
     // Llamar a la función para cargar y mostrar la información existente
     loadAndDisplayExistingInfo();
@@ -162,23 +141,15 @@ function populateEditForm(bookInfo) {
     document.querySelector('input[placeholder="Author name"]').value = bookInfo.author;
     document.getElementById('fdateReading').value = bookInfo.dateOfReading;
     document.querySelector('input[placeholder="Embedded Link"]').value = bookInfo.song;
-
-    // // Manejar las etiquetas seleccionadas
-    // const existingTags = bookInfo.tags;
-    // const tagContainer = document.getElementById('tagContainer');
-
-    // // Limpiar las etiquetas existentes antes de agregar las nuevas
-    // tagContainer.innerHTML = '';
-
-    // existingTags.forEach(tag => {
-    //     const tagElement = document.createElement('span');
-    //     tagElement.className = 'tag selected-tag';
-    //     tagElement.innerText = tag;
-    //     tagElement.addEventListener('click', toggleTag);
-    //     tagContainer.appendChild(tagElement);
-    // });
-
     document.querySelector('input[placeholder="What was your opinion of the book?"]').value = bookInfo.comments;
+    const selectedTagsElement = document.getElementById('tags');
+    const existingTags=bookInfo.tags;
+    existingTags.forEach(tag => {
+        const option = selectedTagsElement.querySelector(`option[value="${tag}"]`);
+        if (option) {
+            option.selected = true;
+        }
+    });
 }
 
 function displaySavedInfo(bookInfo) {

@@ -153,11 +153,14 @@ app.get('/getTags', (req, res) => {
     res.json(tags);
 });
 
-app.post('/saveTags',(req,res)=>{
-    const tags=req.body;
+app.post('/saveTags', (req, res) => {
     const tagsPath = path.join(__dirname, 'data', 'tags.json');
+    const tags = req.body.tags; // Se espera que req.body.tags sea un array directo
+
+    // Guarda los tags en el archivo
     saveDataToFile(tags, tagsPath);
-    res.json({message: 'tag saved'});
+
+    res.json({ message: 'Tags guardados exitosamente' });
 });
 
 app.post('/saveNotes', (req, res) => {

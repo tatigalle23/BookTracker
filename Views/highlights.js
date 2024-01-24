@@ -31,15 +31,15 @@ function getTags() {
         });
 }
 
-async function saveTags(tags) {
-    const response = await fetch('/saveTags', {
+function saveTags(tags) {
+    const response = fetch('/saveTags', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({ tags }),
     });
-    const result = await response.json();
+    const result = response.json();
     console.log(result);
 }
 
@@ -53,11 +53,9 @@ function addNewTag() {
         newOption.textContent = newTagValue;
         selectedTagsElement.appendChild(newOption);
 
-        const selectedTagsOptions = selectedTagsElement.selectedOptions;
-        const currentTags = Array.from(selectedTagsOptions).map(option => option.value);
-
-        // Guarda los tags actualizados en el archivo
-        saveTags(currentTags);
+        // Obtener todas las opciones y guardarlas en el servidor
+        const allOptions = Array.from(selectedTagsElement.options).map(option => option.value);
+        saveTags(allOptions);
 
         document.getElementById('newTagInput').value = '';
     }

@@ -83,12 +83,6 @@ body {
     color: #f2be3e;
 }
 
-.tag-container {
-    margin-bottom: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-}
 
 .tag {
     display: inline-block;
@@ -97,33 +91,20 @@ body {
     background-color: #f0f0f0;
     color: #333;
     text-decoration: none;
-    cursor: pointer;
     padding: 5px 10px;
     margin-right: 5px;
-    /* Espacio entre tags */
     margin-bottom: 5px;
-    /* Espacio entre líneas de tags */
     font-size: 10px;
 }
 
-.tag.selected-tag {
-    background-color: #1a3fe6;
-    /* Green color for selected tags */
-    color: #fff;
-    /* White text for better contrast */
-}
 
-.tag:hover {
-    background-color: #e0e0e0;
-}
-
-#newTagContainer {
+/* #newTagContainer {
     margin-top: 5px;
 }
 
 #newTagInput {
     margin-right: 5px;
-}
+} */
 
 #newTagButton {
     padding: 5px 10px;

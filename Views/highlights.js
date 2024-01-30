@@ -44,22 +44,26 @@ function saveTags(tags) {
 }
 
 function addNewTag() {
-    const newTagValue = document.getElementById('newTagInput').value;
+    const newTagInput = document.getElementById('newTagInput');
+    const newTagValue = newTagInput.value.trim();
 
-    if (newTagValue.trim() !== '') {
+    if (newTagValue !== '') {
         const selectedTagsElement = document.getElementById('tags');
         const newOption = document.createElement('option');
         newOption.value = newTagValue;
         newOption.textContent = newTagValue;
+        newOption.selected = true; // Establecer el nuevo tag como seleccionado
         selectedTagsElement.appendChild(newOption);
 
         // Obtener todas las opciones y guardarlas en el servidor
         const allOptions = Array.from(selectedTagsElement.options).map(option => option.value);
         saveTags(allOptions);
 
-        document.getElementById('newTagInput').value = '';
+        // Limpiar el contenido de la barra de entrada después de agregar el nuevo tag
+        newTagInput.value = '';
     }
 }
+
 
 function saveInfo() {
     const bookTitle = getBookTitleFromUrl();
@@ -171,7 +175,7 @@ function displaySavedInfo(bookInfo) {
             { label: 'Rating', content: createStarRating(bookInfo.rating) },
             { label: 'Author', content: bookInfo.author },
             { label: 'Date of Reading', content: bookInfo.dateOfReading },
-            // { label: 'Tags', content: createTagElements(bookInfo.tags) },
+            { label: 'Tags', content: createTagElements(bookInfo.tags) },
             { label: 'Comments', content: bookInfo.comments },
             { label: 'Playlist/Song', content: createPlaylistElement(bookInfo.song) },
         ];
